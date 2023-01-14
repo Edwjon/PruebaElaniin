@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,9 +12,19 @@
 		4731F9A5296E6D0B008C6175 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731F9A4296E6D0B008C6175 /* ViewController.swift */; };
 		4731F9AA296E6D0C008C6175 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4731F9A9296E6D0C008C6175 /* Assets.xcassets */; };
 		4731F9AD296E6D0C008C6175 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4731F9AB296E6D0C008C6175 /* LaunchScreen.storyboard */; };
+		4799C49E2971EB28001D3B4E /* CategoriasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799C49D2971EB28001D3B4E /* CategoriasViewController.swift */; };
+		4799C4A02971F9CB001D3B4E /* PokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799C49F2971F9CB001D3B4E /* PokemonViewController.swift */; };
+		4799C4A229727CA6001D3B4E /* TeamsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799C4A129727CA6001D3B4E /* TeamsCollectionView.swift */; };
+		47A9F58E296F63BD005AAF98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47A9F58D296F63BD005AAF98 /* GoogleService-Info.plist */; };
+		47A9F5902970978D005AAF98 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9F58F2970978D005AAF98 /* HomeViewController.swift */; };
+		47F3E7D02970F6910090706B /* RegionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F3E7CF2970F6910090706B /* RegionsViewController.swift */; };
+		47F3E7D2297106F10090706B /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F3E7D1297106F10090706B /* PokedexViewController.swift */; };
+		7F46774EC597DE6574128EDB /* Pods_PruebaElaniin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539234DCCE33B10F74E5A619 /* Pods_PruebaElaniin.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0981912533B664B84459A4FE /* Pods-PruebaElaniin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaElaniin.release.xcconfig"; path = "Target Support Files/Pods-PruebaElaniin/Pods-PruebaElaniin.release.xcconfig"; sourceTree = "<group>"; };
+		347EC5E1C4F034EA21A22935 /* Pods-PruebaElaniin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaElaniin.debug.xcconfig"; path = "Target Support Files/Pods-PruebaElaniin/Pods-PruebaElaniin.debug.xcconfig"; sourceTree = "<group>"; };
 		4731F99D296E6D0B008C6175 /* PruebaElaniin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PruebaElaniin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4731F9A0296E6D0B008C6175 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4731F9A2296E6D0B008C6175 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +32,15 @@
 		4731F9A9296E6D0C008C6175 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4731F9AC296E6D0C008C6175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4731F9AE296E6D0C008C6175 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4799C49D2971EB28001D3B4E /* CategoriasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriasViewController.swift; sourceTree = "<group>"; };
+		4799C49F2971F9CB001D3B4E /* PokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewController.swift; sourceTree = "<group>"; };
+		4799C4A129727CA6001D3B4E /* TeamsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionView.swift; sourceTree = "<group>"; };
+		47A9F58D296F63BD005AAF98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47A9F58F2970978D005AAF98 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		47F3E7CE2970CB8F0090706B /* PruebaElaniin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PruebaElaniin.entitlements; sourceTree = "<group>"; };
+		47F3E7CF2970F6910090706B /* RegionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsViewController.swift; sourceTree = "<group>"; };
+		47F3E7D1297106F10090706B /* PokedexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
+		539234DCCE33B10F74E5A619 /* Pods_PruebaElaniin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PruebaElaniin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +48,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F46774EC597DE6574128EDB /* Pods_PruebaElaniin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D6DFD207AEC1946C8604199 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				347EC5E1C4F034EA21A22935 /* Pods-PruebaElaniin.debug.xcconfig */,
+				0981912533B664B84459A4FE /* Pods-PruebaElaniin.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4731F994296E6D0B008C6175 = {
 			isa = PBXGroup;
 			children = (
 				4731F99F296E6D0B008C6175 /* PruebaElaniin */,
 				4731F99E296E6D0B008C6175 /* Products */,
+				3D6DFD207AEC1946C8604199 /* Pods */,
+				D5003E81FCD7F3F6817994CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +85,30 @@
 		4731F99F296E6D0B008C6175 /* PruebaElaniin */ = {
 			isa = PBXGroup;
 			children = (
+				47F3E7CE2970CB8F0090706B /* PruebaElaniin.entitlements */,
 				4731F9A0296E6D0B008C6175 /* AppDelegate.swift */,
 				4731F9A2296E6D0B008C6175 /* SceneDelegate.swift */,
 				4731F9A4296E6D0B008C6175 /* ViewController.swift */,
+				47A9F58F2970978D005AAF98 /* HomeViewController.swift */,
+				47F3E7CF2970F6910090706B /* RegionsViewController.swift */,
+				47F3E7D1297106F10090706B /* PokedexViewController.swift */,
+				4799C49D2971EB28001D3B4E /* CategoriasViewController.swift */,
+				4799C49F2971F9CB001D3B4E /* PokemonViewController.swift */,
+				4799C4A129727CA6001D3B4E /* TeamsCollectionView.swift */,
 				4731F9A9296E6D0C008C6175 /* Assets.xcassets */,
 				4731F9AB296E6D0C008C6175 /* LaunchScreen.storyboard */,
+				47A9F58D296F63BD005AAF98 /* GoogleService-Info.plist */,
 				4731F9AE296E6D0C008C6175 /* Info.plist */,
 			);
 			path = PruebaElaniin;
+			sourceTree = "<group>";
+		};
+		D5003E81FCD7F3F6817994CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				539234DCCE33B10F74E5A619 /* Pods_PruebaElaniin.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4731F9B1296E6D0C008C6175 /* Build configuration list for PBXNativeTarget "PruebaElaniin" */;
 			buildPhases = (
+				1DA49444527EB1936A7BA098 /* [CP] Check Pods Manifest.lock */,
 				4731F999296E6D0B008C6175 /* Sources */,
 				4731F99A296E6D0B008C6175 /* Frameworks */,
 				4731F99B296E6D0B008C6175 /* Resources */,
+				4481EA89511DFE80F5143D0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -100,7 +149,7 @@
 				};
 			};
 			buildConfigurationList = 4731F998296E6D0B008C6175 /* Build configuration list for PBXProject "PruebaElaniin" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -124,19 +173,68 @@
 			files = (
 				4731F9AD296E6D0C008C6175 /* LaunchScreen.storyboard in Resources */,
 				4731F9AA296E6D0C008C6175 /* Assets.xcassets in Resources */,
+				47A9F58E296F63BD005AAF98 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DA49444527EB1936A7BA098 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PruebaElaniin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4481EA89511DFE80F5143D0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PruebaElaniin/Pods-PruebaElaniin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PruebaElaniin/Pods-PruebaElaniin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PruebaElaniin/Pods-PruebaElaniin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4731F999296E6D0B008C6175 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4799C49E2971EB28001D3B4E /* CategoriasViewController.swift in Sources */,
+				47F3E7D2297106F10090706B /* PokedexViewController.swift in Sources */,
 				4731F9A5296E6D0B008C6175 /* ViewController.swift in Sources */,
 				4731F9A1296E6D0B008C6175 /* AppDelegate.swift in Sources */,
 				4731F9A3296E6D0B008C6175 /* SceneDelegate.swift in Sources */,
+				47A9F5902970978D005AAF98 /* HomeViewController.swift in Sources */,
+				4799C4A02971F9CB001D3B4E /* PokemonViewController.swift in Sources */,
+				4799C4A229727CA6001D3B4E /* TeamsCollectionView.swift in Sources */,
+				47F3E7D02970F6910090706B /* RegionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,9 +368,11 @@
 		};
 		4731F9B2296E6D0C008C6175 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 347EC5E1C4F034EA21A22935 /* Pods-PruebaElaniin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PruebaElaniin/PruebaElaniin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -297,9 +397,11 @@
 		};
 		4731F9B3296E6D0C008C6175 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0981912533B664B84459A4FE /* Pods-PruebaElaniin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PruebaElaniin/PruebaElaniin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
