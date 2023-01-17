@@ -65,20 +65,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(red: 0.459, green: 0.789, blue: 0.916, alpha: 1)
         
         setupUI()
-        
-        //Chech for User Defaults
-        let defaults = UserDefaults.standard
-        if let _ = defaults.value(forKey: "email") as? String, let _ = defaults.value(forKey: "provider") as? String {
-            let vc = RegionsViewController()
-            navigationController?.pushViewController(vc, animated: false)
-        }
+        checkForUserDefaults()
     }
-    
+}
+
+
+//MARK: - Setup -
+extension ViewController {
     func setupUI() {
+        view.backgroundColor = UIColor(red: 0.459, green: 0.789, blue: 0.916, alpha: 1)
+        
         view.addSubview(googleImageView)
         googleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         googleImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
@@ -109,7 +107,40 @@ class ViewController: UIViewController {
         facebookLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         facebookLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
+}
+
+
+//MARK: - Class Methods -
+extension ViewController {
+    func checkForUserDefaults() {
+        let defaults = UserDefaults.standard
+        if let _ = defaults.value(forKey: "email") as? String, let _ = defaults.value(forKey: "provider") as? String {
+            let vc = RegionsViewController()
+            navigationController?.pushViewController(vc, animated: false)
+        }
+    }
     
+    func signIn(credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { result, error in
+            if let result = result, error == nil {
+                let vc = RegionsViewController()
+                
+                let defaults = UserDefaults.standard
+                defaults.set(result.user.email, forKey: "email")
+                defaults.synchronize()
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let alert = Utils().createAlertController(title: "Error", message: "Se ha producido un error registrando el usuario", actionTitle: "Ok", withAction: true)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+
+//MARK: - Action Methods -
+extension ViewController {
     @objc func facebookAction() {
         let loginManager = LoginManager()
         loginManager.logOut()
@@ -131,7 +162,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     @objc func googleAction() {
         GIDSignIn.sharedInstance.signOut()
@@ -160,24 +190,4 @@ class ViewController: UIViewController {
             self.signIn(credential: credential)
         }
     }
-    
-    func signIn(credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) { result, error in
-            if let result = result, error == nil {
-                let vc = RegionsViewController()
-                
-                let defaults = UserDefaults.standard
-                defaults.set(result.user.email, forKey: "email")
-                defaults.synchronize()
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let alertController = UIAlertController(title: "Error", message: "Se ha producido un error registrando el usuario", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Aceptar", style: .default))
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
-    }
-
 }
-

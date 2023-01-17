@@ -32,26 +32,39 @@ class RegionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupNavigationBarButtons()
+        setupUI()
+        apiCall()
+    }
+}
+
+
+//MARK: - Setup Methods -
+extension RegionsViewController {
+    func setupUI() {
         view.backgroundColor = .white
         title = "Regiones"
         navigationItem.setHidesBackButton(true, animated: false)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Teams", style: .plain, target: self, action: #selector(viewTeams))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
-        
-        setupUI()
-    }
-    
-    func setupUI() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+    }
+    
+    func setupNavigationBarButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Teams", style: .plain, target: self, action: #selector(viewTeams))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
+    }
+}
+
+//MARK: - API Calls -
+extension RegionsViewController {
+    func apiCall() {
         for i in 1...9 {
-            networkManager.getRegions(id: i) { result in
+            networkManager.get(id: i, name: nil, endPoint: Endpoints.region.rawValue) { (result: Result<Region,Error>) in
                 switch result {
                 case .success(let region):
                     /// if the data is retrieved
@@ -63,11 +76,14 @@ class RegionsViewController: UIViewController {
                     // if not
                     print(error.localizedDescription)
                 }
-                
             }
         }
     }
-    
+}
+
+
+//MARK: - Navigation Methods -
+extension RegionsViewController {
     @objc func viewTeams() {
         let vc = TeamsCollectionView()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -93,9 +109,10 @@ class RegionsViewController: UIViewController {
             print(error)
         }
     }
-    
 }
 
+
+//MARK: - Collection View Methods -
 extension RegionsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -121,52 +138,5 @@ extension RegionsViewController: UICollectionViewDelegate, UICollectionViewDeleg
         let vc = PokedexViewController()
         vc.region = regions[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-
-
-
-class MainCollectionViewCell: UICollectionViewCell {
-    
-    let mainLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 25)
-        return label
-    }()
-    
-    let regionIcon: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        //Add regionIcon to cell
-        addSubview(regionIcon)
-        regionIcon.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
-        regionIcon.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        regionIcon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        regionIcon.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        //Add mainLabel to cell
-        addSubview(mainLabel)
-        mainLabel.leftAnchor.constraint(equalTo: regionIcon.rightAnchor, constant: 15).isActive = true
-        mainLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        mainLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        mainLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-    
-    func configure(title: String, image: String) {
-        self.mainLabel.text = title
-        self.regionIcon.image = UIImage(named: image)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

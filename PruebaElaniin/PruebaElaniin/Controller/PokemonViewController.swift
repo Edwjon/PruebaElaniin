@@ -45,63 +45,66 @@ class PokemonViewController: UIViewController {
         return label
     }()
     
-    
-    
     private let networkManager = NetworkManager()
     var pokemonName: String!
     var pokemon: Pokemon!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .white
-        title = "Pokemon"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ to team", style: .plain, target: self, action: #selector(addPokemonToArray))
-        
-        networkManager.getPokemon(name: pokemonName) { result in
-            switch result {
-            case .success(let pokemon):
-                DispatchQueue.main.async {
-                    self.pokemon = pokemon
-                    self.setupInfo(pokemon: pokemon)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            
-        }
         
         setupUI()
+        setupNavigationBarButtonItems()
+        apiCalls()
     }
     
     @objc func addPokemonToArray() {
         
         for i in pokemones {
             if i.name == self.pokemon.name {
-                let alertController = UIAlertController(title: "Error", message: "This pokemon is already in your team", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-                self.present(alertController, animated: true, completion: nil)
+                let alert = Utils().createAlertController(title: "Error", message: "This pokemon is already in your team", actionTitle: "Ok", withAction: true)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
         }
         
         if pokemones.count == 6 {
-            let alertController = UIAlertController(title: "Error", message: "Your team has reached its limit", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alertController, animated: true, completion: nil)
+            let alert = Utils().createAlertController(title: "Error", message: "Your team has reached its limit", actionTitle: "Ok", withAction: true)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
-        let alertController = UIAlertController(title: "Add Pokemon", message: "Are you sure you want to add this pokemon to your current team?", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Yes", style: .default) { action -> Void in
+        let alert = Utils().createAlertController(title: "Add Pokemon", message: "Are you sure you want to add this pokemon to your current team?", actionTitle: "Yes", withAction: false)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default) { action -> Void in
             pokemones.append(self.pokemon)
         })
-        alertController.addAction(UIAlertAction(title: "No", style: .cancel))
-        self.present(alertController, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
     
+    
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from url: URL) {
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { [weak self] in
+                self?.avatarImage.image = UIImage(data: data)
+            }
+        }
+    }
+    
+}
+
+
+//MARK: - Setup Methods -
+extension PokemonViewController {
     func setupUI() {
+        view.backgroundColor = .white
+        title = "Pokemon"
+        
         view.addSubview(avatarImage)
         avatarImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
         avatarImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
@@ -146,19 +149,25 @@ class PokemonViewController: UIViewController {
         }
     }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    func setupNavigationBarButtonItems() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ to team", style: .plain, target: self, action: #selector(addPokemonToArray))
     }
-    
-    func downloadImage(from url: URL) {
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() { [weak self] in
-                self?.avatarImage.image = UIImage(data: data)
-            }
-        }
-    }
-    
 }
 
 
+//MARK: - API Calls -
+extension PokemonViewController {
+    func apiCalls() {
+        networkManager.get(id: nil, name: pokemonName, endPoint: Endpoints.pokemon.rawValue) { (result: Result<Pokemon,Error>) in
+            switch result {
+            case .success(let pokemon):
+                DispatchQueue.main.async {
+                    self.pokemon = pokemon
+                    self.setupInfo(pokemon: pokemon)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}

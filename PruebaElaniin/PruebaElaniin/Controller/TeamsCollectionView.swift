@@ -15,8 +15,8 @@ import FacebookLogin
 
 class TeamsCollectionView: UIViewController {
     
-    var mainTeams: [MainTeam] = []
-    var deleteMode = false
+    private var mainTeams: [MainTeam] = []
+    private var deleteMode = false
     
     lazy var collectionView: UICollectionView = {
         let collectionLayout = UICollectionViewFlowLayout()
@@ -33,29 +33,35 @@ class TeamsCollectionView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupUI()
+        setupNavigationBarButtonItem()
+        viewTeams()
+    }
+}
+
+
+//MARK: - Setup -
+extension TeamsCollectionView {
+    func setupUI() {
         view.backgroundColor = .white
         title = "Teams"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(setDelete))
-        
-        setupUI()
-    }
-    
-    @objc func setDelete() {
-        deleteMode = true
-    }
-    
-    func setupUI() {
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        viewTeams()
     }
     
+    func setupNavigationBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(setDelete))
+    }
+}
+
+
+//MARK: - DataBase Call -
+extension TeamsCollectionView {
     @objc func viewTeams() {
         let db = Firestore.firestore()
         db.collection("teams").whereField("pokemones.pokemones0.email", isEqualTo: "edwardpizzurro@gmail.com").getDocuments() { (querySnapshot, err) in
@@ -81,9 +87,18 @@ class TeamsCollectionView: UIViewController {
             }
         }
     }
-    
 }
 
+
+//MARK: - Action Methods -
+extension TeamsCollectionView {
+    @objc func setDelete() {
+        deleteMode = true
+    }
+}
+
+
+//MARK: - Collection View Methods -
 extension TeamsCollectionView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -107,23 +122,18 @@ extension TeamsCollectionView: UICollectionViewDelegate, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if deleteMode {
-            let alertController = UIAlertController(title: "Delete Pokemon", message: "Are you sure you want to delete this team?", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Yes", style: .default) { action -> Void in
+            let alert = Utils().createAlertController(title: "Delete Pokemon", message: "Are you sure you want to delete this team?", actionTitle: "", withAction: false)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default) { action -> Void in
                 let db = Firestore.firestore()
                 db.collection("teams").document(self.mainTeams[indexPath.item].id).delete()
                 self.navigationController?.popViewController(animated: true)
             })
-            alertController.addAction(UIAlertAction(title: "No", style: .cancel))
-            self.present(alertController, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "No", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
         } else {
             let vc = CategoriasViewController()
             vc.teamPokemones = mainTeams[indexPath.item].team
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-}
-
-struct MainTeam {
-    let id: String
-    let team: [Pokemon]
 }

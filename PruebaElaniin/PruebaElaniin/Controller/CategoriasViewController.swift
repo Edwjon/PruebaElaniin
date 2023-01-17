@@ -33,33 +33,33 @@ class CategoriasViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .white
-        title = "Pokemones"
         
-        if teamPokemones.isEmpty {
-            networkManager.getPokedex(name: pokedexName) { result in
-                switch result {
-                case .success(let pokedex):
-                    /// if the data is retrieved
-                    DispatchQueue.main.async {
-                        self.pokedexEntries = pokedex.pokemon_entries ?? []
-                        self.collectionView.reloadData()
-                    }
-                case .failure(let error):
-                    // if not
-                    print(error.localizedDescription)
-                }
-                
-            }
-        }
-        
+        apiCalls()
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupNavigationBarButton()
+    }
+}
+
+
+//MARK: - Setup -
+extension CategoriasViewController {
+    func setupUI() {
+        view.backgroundColor = .white
+        title = "Pokemones"
+        
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func setupNavigationBarButton() {
         if pokemones.isEmpty {
             navigationItem.setHidesBackButton(false, animated: false)
         } else {
@@ -70,41 +70,30 @@ class CategoriasViewController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Finish team", style: .plain, target: self, action: #selector(addPokemonToTeam))
         }
     }
-    
-    func setupUI() {
-        view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-    
-    func randomString(length: Int) -> String {
-      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-      return String((0..<length).map{ _ in letters.randomElement()! })
-    }
-    
-    
+}
+
+
+//MARK: - Pokemon Auxiliar Methods -
+extension CategoriasViewController {
     @objc func addPokemonToTeam() {
-        
         if pokemones.count < 3 {
-            let alertController = UIAlertController(title: "Error", message: "You need at least 3 pokemones to finish your team. You currently have \(pokemones.count).", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alertController, animated: true, completion: nil)
+            let alert = Utils().createAlertController(title: "Error", message: "You need at least 3 pokemones to finish your team. You currently have \(pokemones.count).", actionTitle: "Ok", withAction: true)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
         let db = Firestore.firestore()
-        let id = randomString(length: 7)
+        let id = Utils().randomString(length: 7)
         db.collection("teams").document(id).setData(
             [
                 "pokemones": createPokemonDictionary()
             ]
         )
-        
         pokemones = []
         navigationItem.setHidesBackButton(false, animated: false)
         
+        let alert = Utils().createAlertController(title: "Congratulations!", message: "You have created a pokemon team! You can ckeck it out in the home page!", actionTitle: "Nice", withAction: true)
+        self.present(alert, animated: true)
     }
     
     func createPokemonDictionary() -> Dictionary<String, Any> {
@@ -124,9 +113,32 @@ class CategoriasViewController: UIViewController {
         
         return generalDictionary
     }
-    
 }
 
+
+//MARK: - API Calls -
+extension CategoriasViewController {
+    func apiCalls() {
+        if teamPokemones.isEmpty {
+            networkManager.get(id: nil, name: pokedexName, endPoint: Endpoints.pokedex.rawValue) { (result: Result<Pokedex,Error>) in
+                switch result {
+                case .success(let pokedex):
+                    /// if the data is retrieved
+                    DispatchQueue.main.async {
+                        self.pokedexEntries = pokedex.pokemon_entries ?? []
+                        self.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    // if not
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+}
+
+
+//MARK: - Collection View Methods -
 extension CategoriasViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
