@@ -19,29 +19,41 @@ class PokemonViewController: UIViewController {
     
     let nameLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "PokemonSolidNormal", size: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
         return label
     }()
     
     let heightLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "PokemonSolidNormal", size: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
         return label
     }()
     
     let weightLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "PokemonSolidNormal", size: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
         return label
     }()
     
     let specieLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "PokemonSolidNormal", size: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
         return label
     }()
     
@@ -106,34 +118,39 @@ extension PokemonViewController {
         title = "Pokemon"
         
         view.addSubview(avatarImage)
-        avatarImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
-        avatarImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        avatarImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        avatarImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        avatarImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         avatarImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
         avatarImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         view.addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 20).isActive = true
+//        nameLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
+        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         view.addSubview(weightLabel)
         weightLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
-        weightLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
-        weightLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        weightLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        weightLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
+        weightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        weightLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        weightLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         view.addSubview(heightLabel)
         heightLabel.topAnchor.constraint(equalTo: weightLabel.bottomAnchor, constant: 10).isActive = true
-        heightLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
-        heightLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        heightLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        heightLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
+        heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        heightLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        heightLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         view.addSubview(specieLabel)
         specieLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 10).isActive = true
-        specieLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
-        specieLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        specieLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        specieLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20).isActive = true
+        specieLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        specieLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        specieLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     func setupInfo(pokemon: Pokemon) {

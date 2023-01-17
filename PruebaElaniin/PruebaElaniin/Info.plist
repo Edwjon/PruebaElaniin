@@ -12,14 +12,14 @@
 				<string>com.googleusercontent.apps.746177161407-dkghum5cm2iopeo6elbcpvg2178439pl</string>
 			</array>
 		</dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb851061506174502</string>
-            </array>
-        </dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb851061506174502</string>
+			</array>
+		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -38,19 +38,21 @@
 			</array>
 		</dict>
 	</dict>
-    
-    <key>FacebookAppID</key>
-    <string>851061506174502</string>
-    <key>FacebookClientToken</key>
-    <string>61f074f02b9086f1b074f970f36883ad</string>
-    <key>FacebookDisplayName</key>
-    <string>PruebaElaniin</string>
-    
-    
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>fbapi</string>
-      <string>fb-messenger-share-api</string>
-    </array>
+	<key>FacebookAppID</key>
+	<string>851061506174502</string>
+	<key>FacebookClientToken</key>
+	<string>61f074f02b9086f1b074f970f36883ad</string>
+	<key>FacebookDisplayName</key>
+	<string>PruebaElaniin</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PokemonHollow.ttf</string>
+		<string>PokemonSolid.ttf</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 </dict>
 </plist>

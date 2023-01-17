@@ -10,11 +10,11 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
     
-    let mainLabel: UILabel = {
-        let label = UILabel()
+    let mainLabel: PaddingLabel = {
+        let label = PaddingLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 25)
+        label.font = UIFont(name: "PokemonHollowNormal", size: 30)
         return label
     }()
     
